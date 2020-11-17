@@ -1,0 +1,30 @@
+﻿@model IEnumerable<News>
+@inject SignInManager<IdentityUser> signInManager
+
+@{
+    ViewBag.Title = "News list";
+}
+
+<div class="card-deck">
+    @foreach (var news in Model)
+    {
+        var photoPath = "~/pictures/" + (news.Image ?? "1.jpg");
+
+        <div class="card m-3 news-card">
+            <div class="card-header text-center">
+                <h4>@news.Title</h4>
+            </div>
+            <img class="card-img-top thumbnail" src="@photoPath" asp-append-version="true" />
+            <div class="text-wrap content">@news.ShortDescription</div>
+            <div class="card-footer text-center">
+                <a asp-controller="Home" asp-action="Details" asp-route-id="@news.Id" class="btn btn-primary m-1">View</a>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Home" asp-action="Update" asp-route-id="@news.Id" class="btn btn-warning m-1">Edit</a>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@news.Id" class="btn btn-danger m-1">Delete</a>
+
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,29 @@
+﻿@model NewsDetailsDTO
+@inject SignInManager<IdentityUser> signInManager
+
+@{
+    ViewBag.Title = "News details";
+    var photoPath = "~/pictures/" + (Model.News.Image ?? "1.jpg");
+}
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header text-center">
+                <h4>@Model.News.Title</h4>
+            </div>
+            <div class="card-body text-left">
+                <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+                <p>@Model.News.Content</p>
+            </div>
+            <div class="card-footer text-right">
+                <a asp-controller="Home" asp-action="Index" asp-route-id="@Model.News.Id" class="btn btn-primary">Back</a>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <a asp-controller="Home" asp-action="Update" asp-route-id="@Model.News.Id" class="btn btn-warning m-1">Edit</a>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@Model.News.Id" class="btn btn-danger">Delete</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

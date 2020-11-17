@@ -1,0 +1,43 @@
+﻿.btn {
+    width: 80px;
+}
+
+.nav-link :hover {
+    color: darkslategrey;
+}
+
+/* _Layout view */
+
+.logout-btn {
+    width: auto;
+}
+
+
+/* Register view */
+
+.registration-title {
+    padding-top: 20px;
+}
+
+
+/* Login view */
+
+.login-title {
+    padding-top: 20px;
+}
+
+
+/* Index view */
+.thumbnail {
+    height: 250px;
+    width: auto;
+}
+
+.news-card {
+    min-width: 17rem;
+    max-width: 30.5%;
+}
+
+.content {
+    margin: 5px;
+}
